@@ -35,7 +35,10 @@
         </div>
         <h2 class="movie-headline"></h2>
         {{!-- <div class="movie-container"></div> --}}
-        {{{body}}}
+        <ul> {{#each movies}}
+            <li>{{this.attributes.title}}</li>
+            {{/each}}
+        </ul>
     </main>
     {{{footer}}}
 </body>
