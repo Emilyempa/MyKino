@@ -1,0 +1,28 @@
+{
+  "kalas": [
+    {
+      "id": 1,
+      "image": "./img/pizzaparty.png",
+      "imageAlt": "kids on a party eating pizza",
+      "titel": "Pizzaparty!",
+      "description": "Boka kalas där barnen får en fantastisk upplevelse med nybakta pizzor från stans bästa pizzeria",
+      "content": ["Pizza", "Läsk och saft", "Specialplats för födelsebarnet", "Extraordinär filmupplevelse"],
+      "book": "Boka pizzaparty!"
+    },
+    {
+      "id": 2,
+      "image": "./img/glassparty.png",
+      "imageAlt": "icecream buffe",
+      "titel": "Glassparty!",
+      "description": "Boka kalas där barnen får en kylande upplevelse som man aldrig kommer glömma! Med glass från Sveriges bästa glassproffs!",
+      "content": [
+        "Glass i stora lass",
+        "Massor med topping",
+        "Läsk och saft",
+        "Specialplats för födelsebarnet",
+        "Extraordinär filmupplevelse"
+      ],
+      "book": "Boka glassparty!"
+    }
+  ]
+}

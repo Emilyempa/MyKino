@@ -1,0 +1,19 @@
+{
+  "barnkalas": [
+    {
+      "imgHero": "./img/heroBarnkalas.png",
+      "imgHeroDesktop": "./img/heroBarnkalasDesktop.png",
+      "imgAltHero": "ballons",
+      "imgTextDesktop": "./img/heroText.png",
+      "imgAltDesktop": "barnkalas på Kino bio",
+      "imgTextMobile": "./img/KINO.png",
+      "imgAltMobile": "Kino",
+      "titelMobile": "Boka kalas idag!",
+      "titelDesktop": "Boka barnkalas idag!",
+      "book": "Boka barnkalas!",
+      "mainTitelMobile": "Barnkalas på Kino bio!",
+      "descriptionMobile": "Välkommen till barnkalas här på Kino Bio i Sandviken! Välj mellan flera olika filmer som passar perfekt för ditt barns kalas! ",
+      "descriptionDesktop": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In rutrum at nibh rutrum gravida. Pellentesque tincidunt nulla et nibh finibus, in vehicula libero iaculis. Nulla facilisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam in sapien scelerisque, consequat metus vel, egestas dui. Nulla tempus convallis urna. Morbi nec aliquet ante, eu gravida metus. Mauris nec leo eget libero euismod efficitur."
+    }
+  ]
+}
