@@ -74,16 +74,19 @@ app.get('/about', (req, res) => {
   });
 });
 
-app.get('/:id', (req, res) => {
-  const filePath = path.join(__dirname, '../dist/about.html');
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('An error occurred, Try again soon');
-      return;
+app.get('/:id', async (req, res) => {
+  try {
+    const movieId = req.params.id;
+    const response = await axios.get(`https://plankton-app-xhkom.ondigitalocean.app/api/movies/${movieId}`);
+    const movie = response.data.data;
+    if (!movie) {
+      return res.status(404).send('Movie not found');
     }
-    res.send(data);
-  });
+    res.send(movie);
+  } catch (error) {
+    console.error('Error fetching movie:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 app.listen(5080, () => {
