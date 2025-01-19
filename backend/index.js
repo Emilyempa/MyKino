@@ -82,7 +82,14 @@ app.get('/:id', async (req, res) => {
     if (!movie) {
       return res.status(404).send('Movie not found');
     }
-    res.send(movie);
+
+    const movieSpecifics = {
+      title: movie.attributes.title,
+      intro: movie.attributes.intro,
+      image: movie.attributes.image.url,
+    };
+
+    res.send(movieSpecifics);
   } catch (error) {
     console.error('Error fetching movie:', error);
     res.status(500).send('Internal Server Error');
