@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 // import { engine } from 'express-handlebars';
+import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -17,20 +18,32 @@ const port = 5080;
 
 app.use(bodyParser.json());
 
-app.use('/assets', (req, res, next) => {
-  if (req.path.endsWith('.css')) {
-    express.static(path.join(__dirname, '../dist/assets'))(req, res, next);
-  } else {
-    res.status(404).send('Not Found');
+// app.use('/assets', (req, res, next) => {
+//   if (req.path.endsWith('.css')) {
+//     express.static(path.join(__dirname, '../dist/assets'))(req, res, next);
+//   } else {
+//     res.status(404).send('Not Found');
+//   }
+// });
+const getMovies = async () => {
+  try {
+    const response = await axios.get('https://plankton-app-xhkom.ondigitalocean.app/api/movies');
+    console.log(JSON.stringify(response.data));
+  } catch (error) {
+    console.error('Error fetching data:', error);
   }
-});
+};
+
+getMovies();
+
+app.use('/assets', express.static(path.join(__dirname, '../dist/assets')));
 
 app.get('/', (req, res) => {
   const filePath = path.join(__dirname, '../dist/index.html');
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       console.error(err);
-      res.status(500).send('An error occurred, Try again soon');
+      res.status(404).send('An error occurred, Try again soon');
       return;
     }
     res.send(data);
@@ -42,7 +55,7 @@ app.get('/kids', (req, res) => {
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       console.error(err);
-      res.status(500).send('An error occurred, Try again soon');
+      res.status(404).send('An error occurred, Try again soon');
       return;
     }
     res.send(data);
@@ -54,7 +67,7 @@ app.get('/about', (req, res) => {
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       console.error(err);
-      res.status(500).send('An error occurred, Try again soon');
+      res.status(404).send('An error occurred, Try again soon');
       return;
     }
     res.send(data);
