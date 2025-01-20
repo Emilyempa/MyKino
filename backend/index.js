@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-// import { engine } from 'express-handlebars';
+import { engine } from 'express-handlebars';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
@@ -12,9 +12,9 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = 5080;
 
-// app.engine('handlebars', engine({ extname: '.handlebars' }));
-// app.set('view engine', 'handlebars');
-// app.set('views', __dirname);
+app.engine('handlebars', engine({ extname: '.handlebars' }));
+app.set('view engine', 'handlebars');
+app.set('views', __dirname);
 
 app.use(bodyParser.json());
 
@@ -91,7 +91,7 @@ app.get('/:id', async (req, res) => {
       image: movie.attributes.image.url,
     };
 
-    res.send(movieSpecifics);
+    res.render('movie', movieSpecifics);
   } catch (error) {
     console.error('Error fetching movie:', error);
     res.status(500).send('Internal Server Error');
