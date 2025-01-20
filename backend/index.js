@@ -37,6 +37,8 @@ const getMovies = async () => {
 getMovies();
 
 app.use('/assets', express.static(path.join(__dirname, '../dist/assets')));
+app.use('/data', express.static(path.join(__dirname, '../dist/data')));
+app.use('/img', express.static(path.join(__dirname, '../dist/img')));
 
 app.get('/', (req, res) => {
   const filePath = path.join(__dirname, '../dist/index.html');
