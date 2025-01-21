@@ -18,14 +18,6 @@ app.set('views', __dirname);
 
 app.use(bodyParser.json());
 
-// app.use('/assets', (req, res, next) => {
-//   if (req.path.endsWith('.css')) {
-//     express.static(path.join(__dirname, '../dist/assets'))(req, res, next);
-//   } else {
-//     res.status(404).send('Not Found');
-//   }
-// });
-
 const getMovies = async () => {
   try {
     const response = await axios.get('https://plankton-app-xhkom.ondigitalocean.app/api/movies');
@@ -35,7 +27,20 @@ const getMovies = async () => {
   }
 };
 
-getMovies();
+const getFooter = async () => {
+  try {
+    const filePath = path.join(__dirname, '../dist/data/footer.json');
+    const data = fs.readFileSync(filePath, 'utf8'); //change to await fs.readFile
+    const jsonData = JSON.parse(data);
+    return console.log(JSON.stringify(jsonData, null, 2));
+    // return jsonData; to send to handlebars
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    // return null;
+  }
+};
+
+getFooter();
 
 app.use('/assets', express.static(path.join(__dirname, '../dist/assets')));
 app.use('/data', express.static(path.join(__dirname, '../dist/data')));
