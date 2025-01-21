@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 const getMovies = async () => {
   try {
     const response = await axios.get('https://plankton-app-xhkom.ondigitalocean.app/api/movies');
-    // console.log(JSON.stringify(response.data));
+    return response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -41,17 +41,22 @@ app.use('/assets', express.static(path.join(__dirname, '../dist/assets')));
 app.use('/data', express.static(path.join(__dirname, '../dist/data')));
 app.use('/img', express.static(path.join(__dirname, '../dist/img')));
 
-app.get('/', (req, res) => {
-  const filePath = path.join(__dirname, '../dist/index.html');
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(404).send('An error occurred, Try again soon');
-      return;
-    }
-    res.send(data);
-  });
+app.get('/', async (req, res) => {
+  const movies = await getMovies();
+  res.render('home', { movies });
 });
+
+// app.get('/', (req, res) => {
+//   const filePath = path.join(__dirname, '../dist/index.html');
+//   fs.readFile(filePath, 'utf8', (err, data) => {
+//     if (err) {
+//       console.error(err);
+//       res.status(404).send('An error occurred, Try again soon');
+//       return;
+//     }
+//     res.send(data);
+//   });
+// });
 
 app.get('/kids', (req, res) => {
   const filePath = path.join(__dirname, '../dist/kids.html');

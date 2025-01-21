@@ -1,0 +1,10 @@
+<h2>All our movies</h2>
+<ul>
+    {{#each movies}}
+    <li>
+        <a href='/{{ this.id }}'>
+            {{this.attributes.title}}
+        </a>
+    </li>
+    {{/each}}
+</ul>
