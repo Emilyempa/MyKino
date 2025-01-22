@@ -27,20 +27,6 @@ const getMovies = async () => {
   }
 };
 
-// const getFooter = async () => {
-//   try {
-//     const filePath = path.join(__dirname, '../dist/data/footer.json');
-//     const data = fs.readFileSync(filePath, 'utf8'); //change to await fs.readFile
-//     const jsonData = JSON.parse(data);
-//     return console.log(JSON.stringify(jsonData, null, 2));
-//     // return jsonData; to send to handlebars
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-//     // return null;
-//   }
-// };
-
-// getFooter();
 const footer = JSON.parse(fs.readFileSync(path.join(__dirname, '../dist/data', 'footer.json'), 'utf8'));
 const header = JSON.parse(fs.readFileSync(path.join(__dirname, '../dist/data', 'header.json'), 'utf8'));
 
@@ -48,11 +34,6 @@ app.use('/assets', express.static(path.join(__dirname, '../dist/assets')));
 app.use('/data', express.static(path.join(__dirname, '../dist/data')));
 app.use('/img', express.static(path.join(__dirname, '../dist/img')));
 
-// app.use((req, res, next) => {
-//   res.locals.footer = getfooter();
-//   res.locals.header = header;
-//   next();
-// });
 app.use((req, res, next) => {
   const footerSpecifics = {
     logo: footer.footer.logo,
@@ -66,9 +47,6 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
   const headerSpecifics = {
     logo: header.header.mainHeader.logo,
-    brandName: header.header.mainHeader.brandName,
-    alt: header.header.mainHeader.alt,
-    menuLogo: header.header.hamburgerMenu.menuLogo,
     menuLinks: header.header.hamburgerMenu.menuLinks,
   };
   res.locals.header = headerSpecifics;
@@ -141,5 +119,3 @@ app.get('/:id', async (req, res) => {
 app.listen(5080, () => {
   console.log(`Server is running on port ${port}`);
 });
-
-export default app;

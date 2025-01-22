@@ -1,97 +1,71 @@
-<!doctype html>
 <html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <title>Kino Sandviken</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+      href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'
+      rel='stylesheet'
+    />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' />
     <!-- <script type="module" crossorigin src="/Kino_Group_Project/assets/main-CsH3m-1Z.js"></script> -->
-    <link rel="stylesheet" crossorigin href="./assets/main-4swr1hn8.css" />
-</head>
-
-<body>
-    <header>
-        <div id="navigation-menu"></div>
-       
-  <div class="main-header">
-    <img src="{{header.logo}}" alt="{{header.alt}}">
-    <h1>{{header.brandName}}</h1>
-  </div>
-  <div class="hamburger-menu">
-    <img src="{{header.menuLogo}}" alt="Menu Logo">
-    <ul>
-      {{#each header.menuLinks}}
-        <li>{{this.text}}</li>
-      {{/each}}
-    </ul>
-  </div>
-</header>
-    
+    <link rel='stylesheet' crossorigin href='./assets/main-4swr1hn8.css' />
+  </head>
+  <body>
+    <header class='header-container'>
+      <div class='main-nav'>
+        <img src='{{header.logo}}' alt='{{header.alt}}' class='nav-logo' />
+      </div>
+      <div class='hamburger-menu'>
+        <ul class='menu-links'>
+          <li><a href='/movies' style='color: #fc263a;'>Startsidan</a></li>
+          <li><a href='/#' style='color: #fc263a;'>Aktuella filmer</a></li>
+          <li><a href='/kids' style='color: #fc263a;'>Barnkalas</a></li>
+          <li><a href='/about' style='color: #fc263a;'>Om oss</a></li>
+        </ul>
+      </div>
+    </header>
     {{{body}}}
-    {{!-- <main>
-        <div class="info">
-            <div class="info-1">
-                <h1 class="cinema-title"></h1>
-                <p class="cinema-open"></p>
-                <div class="info-modal">
-                    <ul class="info-modal-list"></ul>
-                </div>
-            </div>
-            <div class="info-2">
-                <img class="kino-img" />
-            </div>
-        </div>
-        <h2 class="movie-headline"></h2> --}}
-        {{!-- <div class="movie-container"></div> --}}
-        {{!-- <ul> {{#each movies}}
-            <li>{{this.attributes.title}}</li>
-            {{/each}}
-        </ul> --}}
-    {{!-- </main> --}}
-
-    <footer class="footer-container">
-   
-  {{#each footer.sections}}
-    <h3>{{this.title}}</h3>
-    {{#if this.contact}}
-      <ul>
-        {{#each this.contact}}
-          <li>Email: {{this.mail}}</li>
-          <li>Phone: {{this.phoneNumber}}</li>
+    <footer class='footer-container'>
+      <div class='sections-container'>
+        {{#each footer.sections}}
+          <section class='footer-section'>
+            <h4>{{this.title}}</h4>
+            <ul>
+              {{#if this.contact}}
+                {{#each this.contact}}
+                  <li>E-post: {{this.mail}}</li>
+                  <li>Telefonnummer: {{this.phoneNumber}}</li>
+                {{/each}}
+              {{/if}}
+              {{#if this.links}}
+                {{#each this.links}}
+                  <li>
+                    {{#if this.icon}}
+                      <img src='{{this.icon}}' alt='{{this.text}} icon' class='footer-icon' />
+                    {{/if}}
+                    <a href='{{this.url}}' class='footer-a'>{{this.text}}{{this.name}}</a>
+                  </li>
+                {{/each}}
+              {{/if}}
+              {{#if this.adress}}
+                {{#each this.adress}}
+                  <li>{{this.street}}</li>
+                  <li>{{this.town}}</li>
+                  <li><a href='{{this.url}}' class='footer-afind'>{{this.findUs}}</a></li>
+                {{/each}}
+              {{/if}}
+            </ul>
+          </section>
         {{/each}}
-      </ul>
-    {{/if}}
-    {{#if this.links}}
-      <ul>
-        {{#each this.links}}
-          <li>
-            <img src="{{this.icon}}" alt="Icon">
-            <a href="{{this.url}}">{{this.text}}</a>
-          </li>
-        {{/each}}
-      </ul>
-    {{/if}}
-    {{#if this.adress}}
-      <ul>
-        {{#each this.adress}}
-          <li>Street: {{this.street}}</li>
-          <li>Town: {{this.town}}</li>
-          <li><a href="{{this.url}}">{{this.findUs}}</a></li>
-        {{/each}}
-      </ul>
-    {{/if}}
-  {{/each}}
-  <img src="{{footer.logo}}" alt="Logo">
-  <p>{{footer.text}}</p>
-</footer>
-    
-</body>
-
+      </div>
+      <span class='footer-logo-p'>
+        <img src='{{footer.logo}}' alt='Kino Bio Logo' class='footer-logo' />
+        <p class='footer-logotext'>{{footer.text}}</p>
+      </span>
+    </footer>
+  </body>
 </html>

@@ -5,32 +5,39 @@
 // import fs from 'fs';
 // import path from 'path';
 // import { fileURLToPath } from 'url';
-// import { getMovies } from './movies.js';
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
 
 // const app = express();
-// const port = 5080;
 
 // app.engine('handlebars', engine({ extname: '.handlebars' }));
 // app.set('view engine', 'handlebars');
-// app.set('views', __dirname);
+// app.set('views', path.join(__dirname, 'views'));
 
 // app.use(bodyParser.json());
 
-// // app.use('/assets', (req, res, next) => {
-// //   if (req.path.endsWith('.css')) {
-// //     express.static(path.join(__dirname, '../dist/assets'))(req, res, next);
-// //   } else {
-// //     res.status(404).send('Not Found');
-// //   }
-// // });
-// // getMovies();
+// const getMovies = async () => {
+//   try {
+//     const response = await axios.get('https://plankton-app-xhkom.ondigitalocean.app/api/movies');
+//     return response.data.data;
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//   }
+// };
+
+// // const footer = JSON.parse(fs.readFileSync(path.join(__dirname, '../dist/data', 'footer.json'), 'utf8'));
+// // const header = JSON.parse(fs.readFileSync(path.join(__dirname, '../dist/data', 'header.json'), 'utf8'));
 
 // app.use('/assets', express.static(path.join(__dirname, '../dist/assets')));
 // app.use('/data', express.static(path.join(__dirname, '../dist/data')));
 // app.use('/img', express.static(path.join(__dirname, '../dist/img')));
+
+// // app.use((req, res, next) => {
+// //   res.locals.footer = footer;
+// //   res.locals.header = header;
+// //   next();
+// // });
 
 // app.get('/', (req, res) => {
 //   const filePath = path.join(__dirname, '../dist/index.html');
@@ -42,6 +49,11 @@
 //     }
 //     res.send(data);
 //   });
+// });
+
+// app.get('/movies', async (req, res) => {
+//   const movies = await getMovies();
+//   res.render('home', { movies });
 // });
 
 // app.get('/kids', (req, res) => {
