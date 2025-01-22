@@ -19,7 +19,21 @@
 <body>
     <header>
         <div id="navigation-menu"></div>
-    </header>
+       
+  <div class="main-header">
+    <img src="{{header.logo}}" alt="{{header.alt}}">
+    <h1>{{header.brandName}}</h1>
+  </div>
+  <div class="hamburger-menu">
+    <img src="{{header.menuLogo}}" alt="Menu Logo">
+    <ul>
+      {{#each header.menuLinks}}
+        <li>{{this.text}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</header>
+    
     {{{body}}}
     {{!-- <main>
         <div class="info">
@@ -42,7 +56,42 @@
         </ul> --}}
     {{!-- </main> --}}
 
-    <footer class="footer-container"></footer>
+    <footer class="footer-container">
+   
+  {{#each footer.sections}}
+    <h3>{{this.title}}</h3>
+    {{#if this.contact}}
+      <ul>
+        {{#each this.contact}}
+          <li>Email: {{this.mail}}</li>
+          <li>Phone: {{this.phoneNumber}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+    {{#if this.links}}
+      <ul>
+        {{#each this.links}}
+          <li>
+            <img src="{{this.icon}}" alt="Icon">
+            <a href="{{this.url}}">{{this.text}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+    {{#if this.adress}}
+      <ul>
+        {{#each this.adress}}
+          <li>Street: {{this.street}}</li>
+          <li>Town: {{this.town}}</li>
+          <li><a href="{{this.url}}">{{this.findUs}}</a></li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  {{/each}}
+  <img src="{{footer.logo}}" alt="Logo">
+  <p>{{footer.text}}</p>
+</footer>
+    
 </body>
 
 </html>
