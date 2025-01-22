@@ -79,7 +79,7 @@ function T(a) {
           y.href = '/kids';
           break;
         default:
-          y.href = '#';
+          y.href = '/movies';
       }
       (y.textContent = E.text), g.appendChild(y), f.appendChild(g);
     }),
