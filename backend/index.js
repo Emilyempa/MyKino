@@ -36,6 +36,14 @@ app.use('/data', express.static(path.join(__dirname, '../dist/data')));
 app.use('/img', express.static(path.join(__dirname, '../dist/img')));
 
 app.use((req, res, next) => {
+  if (req.originalUrl === '/favicon.ico') {
+    res.status(204).end();
+    return;
+  }
+  next();
+});
+
+app.use((req, res, next) => {
   const footerSpecifics = {
     logo: footer.footer.logo,
     text: footer.footer.text,
