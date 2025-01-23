@@ -108,19 +108,11 @@ app.get('/about', (req, res) => {
   });
 });
 
-app.get('/test-404', (req, res) => {
-  res.status(404).render('404');
-});
-
 app.get('/:id', async (req, res) => {
   try {
     const movieId = req.params.id;
     const response = await axios.get(`https://plankton-app-xhkom.ondigitalocean.app/api/movies/${movieId}`);
-    const movie = response.data.data;
-    if (!movie) {
-      res.status(404).send('An error occurred, Try again soon');
-      return;
-    }
+    const movie = response.data?.data;
 
     const movieSpecifics = {
       title: movie.attributes.title,
@@ -131,7 +123,7 @@ app.get('/:id', async (req, res) => {
     res.render('movie', movieSpecifics);
   } catch (error) {
     console.error('Error fetching movie:', error);
-    res.status(500).send('Server Error');
+    res.status(404).render('404');
   }
 });
 
