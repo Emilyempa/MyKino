@@ -75,8 +75,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/movies', async (req, res) => {
-  const movies = await getMovies();
-  res.render('home', { movies });
+  try {
+    const movies = await getMovies();
+    res.render('home', { movies });
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+    res.status(500).send('Server Error');
+  }
 });
 
 app.get('/kids', (req, res) => {
@@ -103,13 +108,18 @@ app.get('/about', (req, res) => {
   });
 });
 
+app.get('/test-404', (req, res) => {
+  res.status(404).render('404');
+});
+
 app.get('/:id', async (req, res) => {
   try {
     const movieId = req.params.id;
     const response = await axios.get(`https://plankton-app-xhkom.ondigitalocean.app/api/movies/${movieId}`);
     const movie = response.data.data;
     if (!movie) {
-      return res.status(404).send('Movie not found');
+      res.status(404).send('An error occurred, Try again soon');
+      return;
     }
 
     const movieSpecifics = {
@@ -121,7 +131,7 @@ app.get('/:id', async (req, res) => {
     res.render('movie', movieSpecifics);
   } catch (error) {
     console.error('Error fetching movie:', error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Server Error');
   }
 });
 
