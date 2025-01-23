@@ -14,3 +14,9 @@ test('/5 page shows right title', async () => {
 
   expect(response.text).toMatch('The Muppets');
 });
+
+test('when user tries to access a non-existing film page', async () => {
+  const response = await request(app).get('/1000').expect('Content-Type', /html/).expect(404);
+
+  expect(response.text).toMatch('404 - Page Not Found');
+});
