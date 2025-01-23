@@ -1,10 +1,11 @@
 import express from 'express';
-const app = express();
 import { engine } from 'express-handlebars';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs';
 import axios from 'axios';
+
+const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
